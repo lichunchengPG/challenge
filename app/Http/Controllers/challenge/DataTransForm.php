@@ -9,9 +9,6 @@
 namespace App\Http\Controllers\challenge;
 
 
-use function PHPSTORM_META\type;
-use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
-
 trait DataTransForm
 {
 
