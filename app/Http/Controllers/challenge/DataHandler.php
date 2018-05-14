@@ -80,6 +80,8 @@ class DataHandler
 
         $createData['data'] = $data;
 
+        dd($data);
+
         $result = EsChallengeBank::create($createData);
 
         return $result;
