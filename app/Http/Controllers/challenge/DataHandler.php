@@ -58,8 +58,11 @@ class DataHandler
         switch ($ext){
             case 'txt':
                 return new TxtReader($this->docPath);
+            case 'doc':
+                return new DocReader($this->docPath);
         }
     }
+
 
     // 写入数据库
     public function writeData()
@@ -72,7 +75,7 @@ class DataHandler
         $dataTransform = $this->DataTransform();
 
         // 转化数据
-        $data = $dataTransform->setBackdrop();
+        $data = $dataTransform->getData();
 
         dd($data);
     }

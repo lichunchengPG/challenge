@@ -11,6 +11,6 @@ namespace App\Http\Controllers\challenge;
 interface DataTransformInterface
 {
     // 数据转化
-    public function setBackdrop();
+    public function getData();
 
 }

@@ -13,7 +13,9 @@ class ChallengeController
 {
     public function index()
     {
-        $path = public_path('challenge1.txt');
+        //$path = public_path('challenge.doc');
+        //$path = '/home/vagrant/challenge.txt';
+        $path = '/home/vagrant/challenge.doc';
         $type = '12';
         $reader = new DataHandler($path,$type);
         $reader->writeData();
