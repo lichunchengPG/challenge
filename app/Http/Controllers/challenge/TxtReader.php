@@ -26,7 +26,9 @@ class TxtReader implements ReaderInterface
         // 判断格式
         $encode_type = mb_detect_encoding($content, array("ASCII","GB2312","GBK","UTF-8"));
         // 转化格式
-        $content = mb_convert_encoding($content, 'UTF-8', $encode_type);
+        if($encode_type != 'UTF-8') {
+            $content = mb_convert_encoding($content, 'UTF-8', $encode_type);
+        }
         $content = trim($content);
         // 字符串拆分成数组
         $file_array = explode("\r\n", $content);

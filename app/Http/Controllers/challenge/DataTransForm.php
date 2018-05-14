@@ -9,6 +9,9 @@
 namespace App\Http\Controllers\challenge;
 
 
+use function PHPSTORM_META\type;
+use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
+
 trait DataTransForm
 {
 
@@ -20,25 +23,31 @@ trait DataTransForm
     // 格式转化
     public function customArray($array)
     {
-        $match = 0;  // 是否匹配
         $result = [];  // 存放结果
         $tmp_array = [];
         $tmpKey = '';
+        $count = count($array);
         foreach ($array as $index => $value) {
-
             $value = trim($value);
-            if (in_array($value, $this->customChar)) {
-                // 判断自定义符号
-                $match == 1;
-                $tmpKey = $value;
-            } elseif ($value == $this->paragraph) {
-                // 分段
-                $result[] = $tmp_array;
-                $tmp_array = [];
-            } else {
-                // 内容拼接
-                $tmp_array[$tmpKey] = isset($tmp_array[$tmpKey]) ? $tmp_array[$tmpKey]. $value : $value;
-                $match == 0;
+
+            if($value) {
+                if (in_array($value, $this->customChar)) {
+                    // 判断自定义符号
+                    $tmpKey = $value;
+                } elseif ($value == $this->paragraph) {
+                    // 分段
+                    $result[] = $tmp_array;
+                    $tmp_array = [];
+                } else {
+                    // 内容拼接
+                    $tmp_array[$tmpKey] = isset($tmp_array[$tmpKey]) ? $tmp_array[$tmpKey] . $value : $value;
+                }
+
+                // 判断是否段落缺少最后一个#####
+                if ($index + 1 == $count && $value != $this->paragraph) {
+                    $result[] = $tmp_array;
+                    $tmp_array = [];
+                }
             }
         }
 

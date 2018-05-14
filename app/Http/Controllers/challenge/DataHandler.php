@@ -7,6 +7,7 @@
  */
 
 namespace App\Http\Controllers\challenge;
+use App\EsChallengeBank;
 
 
 /**
@@ -65,7 +66,7 @@ class DataHandler
 
 
     // 写入数据库
-    public function writeData()
+    public function writeData($createData = [])
     {
         // 生成阅读器
         $reader = $this->readDoc();
@@ -74,10 +75,14 @@ class DataHandler
         // 生成格式转化器
         $dataTransform = $this->DataTransform();
 
-        // 转化数据
+        // 获取转化的data数据
         $data = $dataTransform->getData();
 
-        dd($data);
+        $createData['data'] = $data;
+
+        $result = EsChallengeBank::create($createData);
+
+        return $result;
     }
 
 }

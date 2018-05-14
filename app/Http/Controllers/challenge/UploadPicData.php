@@ -28,7 +28,7 @@ class UploadPicData implements DataTransformInterface
        $result_data = $this->setResult();
        $result = ['backdrop' => $backdrop, 'answer_area' => $answer_area, 'result' => $result_data];
 
-       return json_encode($result);
+       return json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 
 
